@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.material3)
     // Retrofit
     implementation(libs.retrofit)
+    implementation(libs.converter.scalars)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.okhttp)
     implementation(libs.kotlinx.serialization.json)
