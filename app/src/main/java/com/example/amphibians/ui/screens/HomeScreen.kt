@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.amphibians.network.Amphibian
 
 @Composable
-fun HomeScreen(amphibiansUiState: String, modifier: Modifier = Modifier) {
+fun HomeScreen(amphibiansUiState: AmphibiansUiState, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()

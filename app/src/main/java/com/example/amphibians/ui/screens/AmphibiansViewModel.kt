@@ -19,10 +19,7 @@ sealed interface AmphibiansUiState
 }
 
 class AmphibiansViewModel : ViewModel() {
-    var marsUiState: AmphibiansUiState by mutableStateOf(AmphibiansUiState.Loading)
-        private set
-
-    var amphibiansUiState: String by mutableStateOf("")
+    var amphibiansUiState: AmphibiansUiState by mutableStateOf(AmphibiansUiState.Loading)
         private set
 
     init {
