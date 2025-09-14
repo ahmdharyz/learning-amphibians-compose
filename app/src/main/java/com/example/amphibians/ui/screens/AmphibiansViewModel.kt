@@ -13,7 +13,7 @@ import retrofit2.http.GET
 
 sealed interface AmphibiansUiState
 {
-    data class Success(val amphibians: String) : AmphibiansUiState
+    data class Success(val amphibians: List<Amphibian>) : AmphibiansUiState
     object Error: AmphibiansUiState
     object Loading: AmphibiansUiState
 }
