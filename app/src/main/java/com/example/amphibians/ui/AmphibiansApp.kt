@@ -2,9 +2,15 @@ package com.example.amphibians.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.amphibians.ui.screens.AmphibiansViewModel
 import com.example.amphibians.ui.screens.HomeScreen
 
 @Composable
 fun AmphibiansApp(modifier: Modifier = Modifier) {
-    HomeScreen(modifier = Modifier)
+    val amphibiansViewModel: AmphibiansViewModel = viewModel()
+
+    HomeScreen(
+        amphibiansUiState = amphibiansViewModel.amphibiansUiState,
+        modifier = Modifier)
 }

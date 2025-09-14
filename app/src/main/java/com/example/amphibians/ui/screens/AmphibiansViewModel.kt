@@ -8,16 +8,22 @@ import androidx.lifecycle.viewModelScope
 import com.example.amphibians.network.Amphibian
 import com.example.amphibians.network.AmphibiansApi
 import kotlinx.coroutines.launch
+import okio.IOException
 import retrofit2.http.GET
 
-sealed interface AmphibiansUiState {
-    data class Success(val amphibians: List<Amphibian>) : AmphibiansUiState
+sealed interface AmphibiansUiState
+{
+    data class Success(val amphibians: String) : AmphibiansUiState
     object Error: AmphibiansUiState
     object Loading: AmphibiansUiState
 }
 
 class AmphibiansViewModel : ViewModel() {
-    var amphibiansUiState: AmphibiansUiState by mutableStateOf(AmphibiansUiState.Loading)
+    var marsUiState: AmphibiansUiState by mutableStateOf(AmphibiansUiState.Loading)
+        private set
+
+    var amphibiansUiState: String by mutableStateOf("")
+        private set
 
     init {
         getAmphibians()
@@ -25,8 +31,12 @@ class AmphibiansViewModel : ViewModel() {
 
     private fun getAmphibians() {
         viewModelScope.launch {
-            val listResult = AmphibiansApi.retrofitService.getAmphibians()
-            amphibiansUiState = listResult as AmphibiansUiState
+            amphibiansUiState = try {
+                var listResult = AmphibiansApi.retrofitService.getAmphibians()
+                AmphibiansUiState.Success(listResult)
+            } catch (e: IOException) {
+                AmphibiansUiState.Error
+            }
         }
     }
 
