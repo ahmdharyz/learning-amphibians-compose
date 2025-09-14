@@ -53,7 +53,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     // Retrofit
     implementation(libs.retrofit)
-    implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.okhttp.v4110)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.okhttp)
