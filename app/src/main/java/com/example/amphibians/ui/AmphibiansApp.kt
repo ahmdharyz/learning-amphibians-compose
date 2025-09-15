@@ -8,7 +8,7 @@ import com.example.amphibians.ui.screens.HomeScreen
 
 @Composable
 fun AmphibiansApp(modifier: Modifier = Modifier) {
-    val amphibiansViewModel: AmphibiansViewModel = viewModel()
+    val amphibiansViewModel: AmphibiansViewModel = viewModel(factory = AmphibiansViewModel.Factory)
 
     HomeScreen(
         amphibiansUiState = amphibiansViewModel.amphibiansUiState,
