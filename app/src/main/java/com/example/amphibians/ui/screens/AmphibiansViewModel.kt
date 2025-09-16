@@ -11,15 +11,14 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.amphibians.AmphibiansApplication
 import com.example.amphibians.data.AmphibiansRepository
-import com.example.amphibians.data.NetworkAmphibiansRepository
 import com.example.amphibians.network.Amphibian
 import kotlinx.coroutines.launch
 import okio.IOException
-import retrofit2.http.GET
 
 sealed interface AmphibiansUiState
 {
-    data class Success(val amphibians: List<Amphibian>) : AmphibiansUiState
+    data class Success(val amphibians: String) : AmphibiansUiState
+//    data class Success(val amphibians: List<Amphibian>) : AmphibiansUiState DELETE
     object Error: AmphibiansUiState
     object Loading: AmphibiansUiState
 }
@@ -35,8 +34,8 @@ class AmphibiansViewModel(private val amphibiansRepository: AmphibiansRepository
     private fun getAmphibians() {
         viewModelScope.launch {
             amphibiansUiState = try {
-                val listResult = amphibiansRepository.getAmphibians()
-                AmphibiansUiState.Success(listResult)
+                val Result: String = amphibiansRepository.getAmphibians().get(0).imgSrc
+                AmphibiansUiState.Success(Result)
             } catch (e: IOException) {
                 AmphibiansUiState.Error
             }
