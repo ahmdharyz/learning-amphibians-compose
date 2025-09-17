@@ -31,7 +31,7 @@ fun HomeScreen(amphibiansUiState: AmphibiansUiState, modifier: Modifier = Modifi
 
 @Composable
 fun ResultScreen(amphibians: List<Amphibian>, modifier: Modifier = Modifier) {
-    LazyColumn(modifier = modifier.fillMaxSize()) {
+    LazyColumn(modifier = Modifier) {
         items(amphibians.count()) { amphibian ->
             AmphibianCard(amphibian = amphibians[amphibian])
         }
