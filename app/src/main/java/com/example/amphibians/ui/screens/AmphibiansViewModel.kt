@@ -36,7 +36,6 @@ class AmphibiansViewModel(private val amphibiansRepository: AmphibiansRepository
                 val result: List<Amphibian> = amphibiansRepository.getAmphibians()
                 AmphibiansUiState.Success(result)
             } catch (e: IOException) {
-                println("Line 40 Error: ${e.message}")
                 AmphibiansUiState.Error
             }
         }
