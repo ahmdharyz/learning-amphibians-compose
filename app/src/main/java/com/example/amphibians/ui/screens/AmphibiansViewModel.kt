@@ -17,8 +17,7 @@ import okio.IOException
 
 sealed interface AmphibiansUiState
 {
-    data class Success(val amphibians: String) : AmphibiansUiState
-//    data class Success(val amphibians: List<Amphibian>) : AmphibiansUiState DELETE
+    data class Success(val amphibians: List<Amphibian>) : AmphibiansUiState
     object Error: AmphibiansUiState
     object Loading: AmphibiansUiState
 }
@@ -34,9 +33,10 @@ class AmphibiansViewModel(private val amphibiansRepository: AmphibiansRepository
     private fun getAmphibians() {
         viewModelScope.launch {
             amphibiansUiState = try {
-                val Result: String = amphibiansRepository.getAmphibians().get(0).imgSrc
-                AmphibiansUiState.Success(Result)
+                val result: List<Amphibian> = amphibiansRepository.getAmphibians()
+                AmphibiansUiState.Success(result)
             } catch (e: IOException) {
+                println("Line 40 Error: ${e.message}")
                 AmphibiansUiState.Error
             }
         }
